@@ -1,0 +1,78 @@
+{
+  "flow": {
+    "follow_seconds": 25,
+    "preroll_seconds": 2.0,
+    "ack": "在"
+  },
+  "serve": {
+    "wake": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.wake_sherpa"
+      ],
+      "config": {}
+    },
+    "segment": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.segment_silero"
+      ],
+      "config": {}
+    },
+    "asr": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.asr_siliconflow"
+      ],
+      "config": {}
+    },
+    "agent": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.agent_xingchen"
+      ],
+      "config": {}
+    },
+    "speaker": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.speaker_cosyvoice"
+      ],
+      "config": {}
+    },
+    "webui": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.webui"
+      ],
+      "config": {
+        "host": "127.0.0.1",
+        "port": 8765
+      }
+    }
+  },
+  "listen": {
+    "segment": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.segment_silero"
+      ],
+      "config": {}
+    },
+    "asr": {
+      "command": [
+        ".venv\\Scripts\\python.exe",
+        "-m",
+        "lingyu.plugins.asr_sensevoice"
+      ],
+      "config": {}
+    }
+  }
+}
