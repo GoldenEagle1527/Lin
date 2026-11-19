@@ -74,7 +74,7 @@
 
 - `protocol` 必须是整数 `1`。不是 `1` 时，骨架退出，并写明是哪条命令。
 - `slot` 必须与启动文件里这个进程的槽名一致，取值是 `wake`、`segment`、`asr`、`agent`、`speaker` 之一。`webui` 不走这套消息。不一致时，骨架退出，并写明是哪条命令。
-- `settings` 是字段声明数组，给换插件的人看该插件接受哪些 `config` 字段，不是页面的渲染协议。没有设置就是空数组。每个元素含 `name`（字符串）、`type`（字符串）、`default`（JSON 值）、`label`（中文标签）。设置页不向插件查询 `settings`，也不按这些声明逐项画输入框。页面把每个槽的 `config` 整段显示成 JSON 文本框，保存时只写回 `config` 和 `flow`，`command` 按文件里的原样保留。
+- `settings` 是字段声明数组，给换插件的人看该插件接受哪些 `config` 字段，不是页面的渲染协议。没有设置就是空数组。每个元素含 `name`（字符串）、`type`（字符串）、`default`（JSON 值）、`label`（中文标签）。设置页不向插件查询 `settings`，也不按这些声明逐项画输入框。页面把每个槽的 `config` 显示成通用 JSON 编辑器，也可以展开源码。保存时只写回 `config` 和 `flow`，`command` 按文件里的原样保留。
 - `input` 只有 `agent` 携带，取值是 `text` 或 `audio`。其他槽的 `hello` 不带 `input`。
 
 没有设置项的 `wake`：

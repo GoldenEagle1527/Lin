@@ -12,6 +12,11 @@ from lingyu.plugins.webui.edits import apply_edits
 from lingyu.plugins.webui.page import render_failure, render_page
 from lingyu.plugins.webui.startup import StartupError, read_document, replace_startup
 
+PAGE_CSP = (
+    "default-src 'none'; style-src 'unsafe-inline'; "
+    "script-src 'unsafe-inline'; form-action 'self'; base-uri 'none'"
+)
+
 
 class SettingsHandler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.0"
@@ -88,17 +93,14 @@ class SettingsHandler(BaseHTTPRequestHandler):
         parsed = parse_qs(text, keep_blank_values=True)
         return {key: values[0] if values else "" for key, values in parsed.items()}
 
-    def _send_page(self, status: int, page: str) -> None:
+    def _send_page(self, status: int, page: str, *, csp: str = PAGE_CSP) -> None:
         body = page.encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header(
-            "Content-Security-Policy",
-            "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'",
-        )
+        self.send_header("Content-Security-Policy", csp)
         self.end_headers()
         self.wfile.write(body)
 
