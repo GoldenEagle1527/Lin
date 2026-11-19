@@ -60,13 +60,14 @@
 | `lingyu/loop.py` | 一轮流程：麦克风、静音、预滚、待命、续说，把 `delta` 交给 `feed` |
 | `lingyu/protocol.md` | 插件协议 |
 | `lingyu.json` | 唯一登记处。`flow`，以及 serve、listen 各槽的 `command` 和 `config` |
-| `lingyu/plugins/wake_sherpa.py` | 唤醒槽 |
-| `lingyu/plugins/segment_silero.py` | 切句槽 |
-| `lingyu/plugins/asr_siliconflow.py` | 对话服务的转写槽 |
-| `lingyu/plugins/asr_sensevoice.py` | 听写的转写槽 |
-| `lingyu/plugins/agent_xingchen.py` | 对话槽。`input` 为 `text` |
-| `lingyu/plugins/speaker_cosyvoice.py` | 朗读槽 |
-| `lingyu/plugins/webui.py` | 设置页。自己读启动文件 |
+| `lingyu/plugins/stdio/` | 插件进程共用的标准输入输出协议 |
+| `lingyu/plugins/wake_sherpa/` | 唤醒槽 |
+| `lingyu/plugins/segment_silero/` | 切句槽 |
+| `lingyu/plugins/asr_siliconflow/` | 对话服务的转写槽 |
+| `lingyu/plugins/asr_sensevoice/` | 听写的转写槽 |
+| `lingyu/plugins/agent_xingchen/` | 对话槽。`input` 为 `text` |
+| `lingyu/plugins/speaker_cosyvoice/` | 朗读槽 |
+| `lingyu/plugins/webui/` | 设置页。自己读启动文件 |
 | `lingyu/kws.py` | 唤醒插件内部在用。本机唤醒，以及剥掉句首唤醒词 |
 | `lingyu/asr.py` | 切句和 SenseVoice。切句插件、听写转写在用 |
 | `lingyu/cloud_asr.py` | 星辰转写，云端转写插件在用。429 和 5xx 会重试 |

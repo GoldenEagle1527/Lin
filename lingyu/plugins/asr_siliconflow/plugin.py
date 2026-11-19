@@ -1,14 +1,6 @@
-"""星辰云端转写。模型名仍来自环境变量，configure 时才构造客户端。"""
-
 from __future__ import annotations
 
-from lingyu.plugins.stdio import config_of, decode_pcm, serve
-
-HELLO = {
-    "protocol": 1,
-    "slot": "asr",
-    "settings": [],
-}
+from lingyu.plugins.stdio import config_of, decode_pcm
 
 
 class CloudAsr:
@@ -27,18 +19,3 @@ class CloudAsr:
             raise RuntimeError("还没有 configure")
         samples = decode_pcm(params, expect_rate=self.transcriber.sample_rate)
         return {"text": self.transcriber.transcribe(samples)}
-
-
-def main() -> None:
-    plugin = CloudAsr()
-    serve(
-        HELLO,
-        {
-            "configure": plugin.configure,
-            "transcribe": plugin.transcribe,
-        },
-    )
-
-
-if __name__ == "__main__":
-    main()
